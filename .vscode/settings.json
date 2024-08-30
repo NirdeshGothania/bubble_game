@@ -1,0 +1,7 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+    },
+    "cmake.sourceDirectory": "F:/flutterprojects/bubble_game/linux",
+}
