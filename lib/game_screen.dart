@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:bubble_game/level.dart';
 import 'package:flutter/material.dart';
 
 class GameScreen extends StatefulWidget {
@@ -239,8 +240,16 @@ class _GameScreenState extends State<GameScreen> {
                 bottom: BorderSide(width: 2.0, color: Colors.white),
               ),
             ),
-            child: Stack(
-              children: bubbles,
+            child: Level(
+              bubbleSpeed: 1,
+              onGameLose: () {
+                resetGame();
+              },
+              onGameWin: () {
+                endGame();
+              },
+              spawnDelay: const Duration(seconds: 1),
+              totalCount: 10,
             ),
           ),
           Stack(
@@ -286,21 +295,21 @@ class _GameScreenState extends State<GameScreen> {
   }
 }
 
-class HeartBubble extends StatelessWidget {
-  const HeartBubble({super.key});
+// class HeartBubble extends StatelessWidget {
+//   const HeartBubble({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.pink.withOpacity(0.5),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       width: 50,
+//       height: 50,
+//       decoration: BoxDecoration(
+//         shape: BoxShape.circle,
+//         color: Colors.pink.withOpacity(0.5),
+//       ),
+//     );
+//   }
+// }
 
 class NamedBubble extends StatelessWidget {
   final String name;
@@ -315,6 +324,7 @@ class NamedBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           width: 70,
